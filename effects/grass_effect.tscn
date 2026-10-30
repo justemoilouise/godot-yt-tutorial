@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://da4p4rmm73fq3"]
+
+[ext_resource type="Texture2D" uid="uid://blmcnetpgv511" path="res://effects/grass_effect.png" id="1_xq5v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klait"]
+atlas = ExtResource("1_xq5v5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4k3a"]
+atlas = ExtResource("1_xq5v5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g342f"]
+atlas = ExtResource("1_xq5v5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns8nf"]
+atlas = ExtResource("1_xq5v5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikiwm"]
+atlas = ExtResource("1_xq5v5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csnku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klait")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4k3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g342f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns8nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikiwm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="animated_grass" type="AnimatedSprite2D" unique_id=252192417]
+sprite_frames = SubResource("SpriteFrames_csnku")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="." to="." method="queue_free"]

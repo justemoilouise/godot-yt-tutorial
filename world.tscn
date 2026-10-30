@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://d3dlxgj6ovkmu" path="res://world/cliff_tileset.tres" id="3_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c4wdpeajx03e8" path="res://world/bush.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://djpyeutl3qhit" path="res://world/tree.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://d1c4mxbfw010m" path="res://world/grass.tscn" id="7_pkg7o"]
 
 [node name="World" type="Node2D" unique_id=1666150054]
 y_sort_enabled = true
@@ -77,3 +78,35 @@ position = Vector2(576, 328)
 
 [node name="tree7" parent="." unique_id=655041567 instance=ExtResource("4_aqk2v")]
 position = Vector2(64, 352)
+
+[node name="grass" parent="." unique_id=761909020 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(88, 184)
+
+[node name="grass2" parent="." unique_id=861017877 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(104, 184)
+
+[node name="grass3" parent="." unique_id=1631976031 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(88, 200)
+
+[node name="grass4" parent="." unique_id=1963660242 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(104, 200)
+
+[node name="grass5" parent="." unique_id=1899783692 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(216, 264)
+
+[node name="grass6" parent="." unique_id=1246059398 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(408, 40)
+
+[node name="grass7" parent="." unique_id=2075108810 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(424, 40)
+
+[node name="grass8" parent="." unique_id=378745285 instance=ExtResource("7_pkg7o")]
+visible = true
+position = Vector2(440, 40)
