@@ -57,11 +57,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_erta8"]
 advance_mode = 2
-advance_expression = "not is_player_in_range()"
+advance_expression = "not can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ww8v4"]
 advance_mode = 2
-advance_expression = "is_player_in_range()"
+advance_expression = "can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e7gs6"]
 states/Start/position = Vector2(221, 100.75)
@@ -78,6 +78,8 @@ nodes/StateMachine/position = Vector2(290, 110)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="bat_enemy" type="CharacterBody2D" unique_id=1177445635]
+collision_layer = 4
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_5gx0a")
 
@@ -101,3 +103,6 @@ libraries/ = SubResource("AnimationLibrary_grp10")
 tree_root = SubResource("AnimationNodeBlendTree_e7gs6")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=311171995]
+target_position = Vector2(8, 0)

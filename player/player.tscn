@@ -522,6 +522,8 @@ nodes/StateMachine/position = Vector2(20, 60)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1081348281 groups=["player"]]
+collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
 

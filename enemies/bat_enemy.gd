@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 const SPEED = 30.0
-const RANGE = 96
+const RANGE = 108
 
 @onready var bat: Sprite2D = $bat
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
+@onready var ray_cast: RayCast2D = $RayCast2D
 
 func _physics_process(_delta: float) -> void:
 	var state = playback.get_current_node()
@@ -30,3 +31,12 @@ func is_player_in_range() -> bool:
 		return distance_to_player < RANGE
 	
 	return false		
+
+func can_see_player() -> bool:	
+	if not is_player_in_range():
+		return false
+		
+	var player = get_player()
+	ray_cast.target_position = player.global_position - global_position
+	# player is in sight, without any collision shapes
+	return not ray_cast.is_colliding()
