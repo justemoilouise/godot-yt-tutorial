@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4wdpeajx03e8" path="res://world/bush.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://djpyeutl3qhit" path="res://world/tree.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://d1c4mxbfw010m" path="res://world/grass.tscn" id="7_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://c66pmy7i3pjb8" path="res://enemies/bat_enemy.tscn" id="8_gbfbk"]
 
 [node name="World" type="Node2D" unique_id=1666150054]
 y_sort_enabled = true
@@ -110,3 +111,9 @@ position = Vector2(424, 40)
 [node name="grass8" parent="." unique_id=378745285 instance=ExtResource("7_pkg7o")]
 visible = true
 position = Vector2(440, 40)
+
+[node name="bat_enemy" parent="." unique_id=1177445635 instance=ExtResource("8_gbfbk")]
+position = Vector2(360, 240)
+
+[node name="bat_enemy2" parent="." unique_id=879382685 instance=ExtResource("8_gbfbk")]
+position = Vector2(232, 64)

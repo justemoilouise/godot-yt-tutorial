@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const SPEED = 100.0
 const ROLL_SPEED = 125.0
@@ -9,16 +9,16 @@ var last_input_vector = Vector2.ZERO
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var state = playback.get_current_node()
 	
 	match state:
-		"MoveState": move_state(delta)
-		"RollState": roll_state(delta)
+		"MoveState": move_state(_delta)
+		"RollState": roll_state(_delta)
 		"AttackState":
 			pass
 
-func move_state(delta: float) -> void:
+func move_state(_delta: float) -> void:
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		
 	if input_vector != Vector2.ZERO:
@@ -36,7 +36,7 @@ func move_state(delta: float) -> void:
 	velocity = input_vector * SPEED
 	move_and_slide()	
 
-func roll_state(delta: float) -> void:
+func roll_state(_delta: float) -> void:
 	velocity = last_input_vector.normalized() * ROLL_SPEED
 	move_and_slide()	
 
