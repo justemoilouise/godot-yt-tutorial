@@ -78,6 +78,7 @@ nodes/StateMachine/position = Vector2(290, 110)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="bat_enemy" type="CharacterBody2D" unique_id=1177445635]
+motion_mode = 1
 script = ExtResource("1_5gx0a")
 
 [node name="bat" type="Sprite2D" parent="." unique_id=1981635902]

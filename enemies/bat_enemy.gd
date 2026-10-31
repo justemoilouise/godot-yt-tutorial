@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 30.0
-
-@export var player_range: = 96
+const RANGE = 96
 
 @onready var bat: Sprite2D = $bat
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -16,22 +15,18 @@ func _physics_process(_delta: float) -> void:
 			pass
 		"chase":
 			var player = get_player()
-			if player is Player:
-				velocity = global_position.direction_to(player.global_position) * SPEED
-			else:
-				velocity = Vector2.ZERO
+			velocity = global_position.direction_to(player.global_position) * SPEED if player is Player else Vector2.ZERO
+			bat.scale.x = sign(velocity.x)
 			move_and_slide()
 
 func get_player() -> Player:
 	return get_tree().get_first_node_in_group("player")
 
 func is_player_in_range() -> bool:
-	var in_range = false
 	var player = get_player()
 	
 	if player is Player:
 		var distance_to_player = global_position.distance_to(player.global_position)
-		if distance_to_player < player_range:
-			in_range = true
+		return distance_to_player < RANGE
 	
-	return in_range		
+	return false		
