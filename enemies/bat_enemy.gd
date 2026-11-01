@@ -10,9 +10,15 @@ const FRICTION = 480
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var enemy_hurt_box: HurtBox = $EnemyHurtBox
 
+@export var stats: Stats
+
 func _ready() -> void:
+	# every bat has its own instance
+	stats = stats.duplicate()
+	
 	# call AFTER ALL events finished in the frame
 	enemy_hurt_box.hurt.connect(take_hit.call_deferred)
+	stats.no_health.connect(queue_free)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -30,6 +36,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func take_hit(other_hitbox: HitBox) -> void:
+	stats.health -= other_hitbox.damage
 	velocity = other_hitbox.hit_direction * other_hitbox.hit_amount
 	playback.start("hit")
 

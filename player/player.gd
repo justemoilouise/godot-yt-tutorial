@@ -9,6 +9,8 @@ var last_input_vector = Vector2.ZERO
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 
+@export var stats: Stats
+
 func _physics_process(_delta: float) -> void:
 	var state = playback.get_current_node()
 	
