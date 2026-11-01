@@ -8,8 +8,23 @@ var last_input_vector = Vector2.ZERO
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
+@onready var player_hurtbox: HurtBox = $HurtBox
+@onready var animation_player: AnimationPlayer = $EffectAnimationPlayer
 
 @export var stats: Stats
+
+func _ready() -> void:
+	player_hurtbox.hurt.connect(take_hit.call_deferred)
+	stats.no_health.connect(die)
+
+func take_hit(other_hitbox: HitBox) -> void:
+	stats.health -= other_hitbox.damage
+	animation_player.play("blink")
+
+func die() -> void:
+	hide()
+	remove_from_group("player")
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func _physics_process(_delta: float) -> void:
 	var state = playback.get_current_node()
