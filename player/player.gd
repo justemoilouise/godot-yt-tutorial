@@ -4,7 +4,7 @@ const SPEED = 100.0
 const ROLL_SPEED = 125.0
 
 var input_vector = Vector2.ZERO
-var last_input_vector = Vector2.ZERO
+var last_input_vector = Vector2.DOWN
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
