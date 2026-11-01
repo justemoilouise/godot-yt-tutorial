@@ -2,13 +2,19 @@ extends CharacterBody2D
 
 const SPEED = 30.0
 const RANGE = 108
+const FRICTION = 480
 
 @onready var bat: Sprite2D = $bat
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 @onready var ray_cast: RayCast2D = $RayCast2D
+@onready var enemy_hurt_box: HurtBox = $EnemyHurtBox
 
-func _physics_process(_delta: float) -> void:
+func _ready() -> void:
+	# call AFTER ALL events finished in the frame
+	enemy_hurt_box.hurt.connect(take_hit.call_deferred)
+
+func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
 	
 	match state:
@@ -19,6 +25,13 @@ func _physics_process(_delta: float) -> void:
 			velocity = global_position.direction_to(player.global_position) * SPEED if player is Player else Vector2.ZERO
 			bat.scale.x = sign(velocity.x)
 			move_and_slide()
+		"hit":
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+			move_and_slide()
+
+func take_hit(other_hitbox: HitBox) -> void:
+	velocity = other_hitbox.hit_direction * other_hitbox.hit_amount
+	playback.start("hit")
 
 func get_player() -> Player:
 	return get_tree().get_first_node_in_group("player")
