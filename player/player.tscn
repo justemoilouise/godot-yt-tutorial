@@ -2,16 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cuhyh8jyf7bds" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dc3tjrtvqgmbk" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Script" uid="uid://cb7qeivu7l7xg" path="res://stats.gd" id="2_qjkh3"]
+[ext_resource type="Resource" uid="uid://cadnlsgrnqmo7" path="res://player/player_stats.tres" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cdxr20hljtuay" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://ctcqmplguaqss" path="res://damage_boxes/hit_box.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://bpw87hy1yv5bk" path="res://damage_boxes/hurt_box.gd" id="6_g6k8r"]
-
-[sub_resource type="Resource" id="Resource_g6k8r"]
-script = ExtResource("2_qjkh3")
-health = 4
-max_health = 4
-metadata/_custom_type_script = "uid://cb7qeivu7l7xg"
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 length = 0.001
@@ -104,6 +98,23 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(0, 1)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.0005149597, 0.0005149597),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}, {
+"args": [],
+"method": &"clear_hit_targets"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ebec5"]
 resource_name = "attack_left"
@@ -144,6 +155,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(-1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0007724395),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_yllr7"]
@@ -186,6 +211,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(1, 0)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0005149597),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kb6p2"]
 resource_name = "attack_up"
@@ -226,6 +265,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0, -1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0007724395),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_hit_targets"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wodsf"]
@@ -644,7 +697,6 @@ transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTrans
 graph_offset = Vector2(159.06093, -164.77)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uw77l"]
-graph_offset = Vector2(-266.7092, 0)
 nodes/output/position = Vector2(570, 70)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_7pqkx")
 nodes/StateMachine/position = Vector2(20, 60)
@@ -719,7 +771,7 @@ _data = {
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_rkbax")
-stats = SubResource("Resource_g6k8r")
+stats = ExtResource("2_g6k8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1587432715]
 texture = ExtResource("1_oul6g")
@@ -755,6 +807,7 @@ collision_layer = 16
 collision_mask = 16
 script = ExtResource("4_yw30f")
 hit_direction = Vector2(0, 1)
+stores_hit_targets = true
 metadata/_custom_type_script = "uid://ctcqmplguaqss"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox" unique_id=1478063038]

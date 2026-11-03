@@ -5,11 +5,15 @@ const MIN_RANGE = 4
 const MAX_RANGE = 108
 const FRICTION = 480
 
+const HIT_EFFECT = preload("uid://ds0hh5o8xmp84")
+const ENEMY_DEATH_EFFECT = preload("uid://dwdxyc8emevf7")
+
 @onready var bat: Sprite2D = $bat
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var enemy_hurt_box: HurtBox = $EnemyHurtBox
+@onready var center: Marker2D = $Center
 
 @export var stats: Stats
 
@@ -19,7 +23,7 @@ func _ready() -> void:
 	
 	# call AFTER ALL events finished in the frame
 	enemy_hurt_box.hurt.connect(take_hit.call_deferred)
-	stats.no_health.connect(queue_free)
+	stats.no_health.connect(enemy_death)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -37,9 +41,19 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func take_hit(other_hitbox: HitBox) -> void:
+	var hit_effect = HIT_EFFECT.instantiate()
+	get_tree().current_scene.add_child(hit_effect)
+	hit_effect.global_position = center.global_position
+	
 	stats.health -= other_hitbox.damage
 	velocity = other_hitbox.hit_direction * other_hitbox.hit_amount
 	playback.start("hit")
+
+func enemy_death() -> void:
+	var enemy_death_effect = ENEMY_DEATH_EFFECT.instantiate()
+	get_tree().current_scene.add_child(enemy_death_effect)
+	enemy_death_effect.global_position = global_position
+	queue_free()
 
 func get_player() -> Player:
 	return get_tree().get_first_node_in_group("player")

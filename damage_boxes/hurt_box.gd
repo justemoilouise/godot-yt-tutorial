@@ -13,4 +13,9 @@ func _process(_delta: float) -> void:
 
 func _on_area_entered(area2d: Area2D) -> void:
 	if area2d is not HitBox: return
+	
+	var area2d_hitbox = area2d as HitBox
+	if self in area2d_hitbox.hit_targets: return
+	
+	if area2d_hitbox.stores_hit_targets: 	area2d_hitbox.hit_targets.append(self)
 	hurt.emit(area2d)

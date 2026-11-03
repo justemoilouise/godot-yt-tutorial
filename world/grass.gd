@@ -1,6 +1,6 @@
 extends Node2D
 
-const GRASS_EFFECT = preload("res://effects/grass_effect.tscn")
+const GRASS_EFFECT = preload("uid://da4p4rmm73fq3")
 
 @onready var grass_hurt_box: HurtBox = $GrassHurtBox
 

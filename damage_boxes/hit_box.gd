@@ -3,12 +3,9 @@ class_name HitBox extends Area2D
 @export var damage := 1
 @export var hit_direction: Vector2
 @export var hit_amount := 200
+@export var stores_hit_targets: bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var hit_targets: Array
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func clear_hit_targets() -> void:
+	hit_targets.clear()
