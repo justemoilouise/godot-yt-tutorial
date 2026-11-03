@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1c4mxbfw010m" path="res://world/grass.tscn" id="7_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c66pmy7i3pjb8" path="res://enemies/bat_enemy.tscn" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://demrf0wy4i7xl" path="res://ui/hearts_ui.tscn" id="9_ioo17"]
+[ext_resource type="AudioStream" uid="uid://dsyoedm81rkd4" path="res://music_and_sounds/music.mp3" id="10_wse8f"]
 
 [node name="World" type="Node2D" unique_id=1666150054]
 y_sort_enabled = true
@@ -40,6 +41,12 @@ tile_set = ExtResource("2_dwbse")
 [node name="CliffTileMapLayer" type="TileMapLayer" parent="GroundLayer" unique_id=791284577]
 tile_map_data = PackedByteArray("AAAAAAkAAQAAAAEAAAABAAkAAQABAAEAAAACAAkAAQACAAEAAAAAAAgAAQAAAAAAAAABAAgAAQABAAAAAAACAAgAAQACAAAAAAALAAsAAQAAAAMAAAAMAAsAAQABAAMAAAANAAsAAQABAAMAAAAOAAsAAQACAAMAAAAFAAQAAQAAAAAAAAAGAAQAAQABAAAAAAAGAAUAAQABAAIAAAAHAAUAAQACAAIAAAAFAAYAAQADAAIAAAAFAAUAAQAEAAEAAAAOAAcAAQAAAAMAAAAPAAcAAQABAAMAAAAQAAcAAQAGAAAAAAARAAcAAQABAAAAAAASAAcAAQACAAAAAAASAAgAAQACAAEAAAASAAkAAQACAAIAAAARAAkAAQABAAIAAAAQAAkAAQAAAAIAAAAQAAgAAQAEAAIAAAARAAgAAQABAAEAAAALAAAAAQAAAAMAAAAMAAAAAQABAAMAAAANAAAAAQABAAMAAAAOAAAAAQABAAMAAAAPAAAAAQACAAMAAAABAAAAAQADAAMAAAAHAAQAAQACAAAAAAACAAoAAQACAAEAAAACAAsAAQACAAIAAAABAAsAAQABAAIAAAAAAAsAAQAAAAIAAAAAAAoAAQAEAAIAAAABAAoAAQABAAEAAAA=")
 tile_set = ExtResource("3_pkg7o")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=980712612]
+stream = ExtResource("10_wse8f")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [node name="Player" parent="." unique_id=1081348281 instance=ExtResource("1_f3sb7")]
 position = Vector2(146, 76)

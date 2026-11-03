@@ -8,8 +8,9 @@ var last_input_vector = Vector2.DOWN
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
-@onready var player_hurtbox: HurtBox = $HurtBox
 @onready var animation_player: AnimationPlayer = $EffectAnimationPlayer
+@onready var player_hurtbox: HurtBox = $HurtBox
+@onready var hurt_audio_stream_player_2d: AudioStreamPlayer2D = $HurtAudioStreamPlayer2D
 
 @export var stats: Stats
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 func take_hit(other_hitbox: HitBox) -> void:
 	stats.health -= other_hitbox.damage
 	animation_player.play("blink")
+	hurt_audio_stream_player_2d.play()
 
 func die() -> void:
 	hide()
