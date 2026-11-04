@@ -14,6 +14,8 @@ const ENEMY_DEATH_EFFECT = preload("uid://dwdxyc8emevf7")
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var enemy_hurt_box: HurtBox = $EnemyHurtBox
 @onready var center: Marker2D = $Center
+@onready var marker_2d: Marker2D = $Marker2D
+@onready var navigation_agent_2d: NavigationAgent2D = $Marker2D/NavigationAgent2D
 
 @export var stats: Stats
 
@@ -33,7 +35,9 @@ func _physics_process(delta: float) -> void:
 			pass
 		"chase":
 			var player = get_player()
-			velocity = global_position.direction_to(player.global_position) * SPEED if player is Player else Vector2.ZERO
+			navigation_agent_2d.target_position = player.global_position
+			var next_point = navigation_agent_2d.get_next_path_position()
+			velocity = global_position.direction_to(next_point - marker_2d.position) * SPEED if player is Player else Vector2.ZERO
 			bat.scale.x = sign(velocity.x)
 			move_and_slide()
 		"hit":
@@ -73,5 +77,7 @@ func can_see_player() -> bool:
 		
 	var player = get_player()
 	ray_cast.target_position = player.global_position - global_position
+	ray_cast.force_raycast_update()
+	
 	# player is in sight, without any collision shapes
 	return not ray_cast.is_colliding()

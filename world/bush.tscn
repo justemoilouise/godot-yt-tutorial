@@ -13,7 +13,7 @@ texture = ExtResource("1_b1g3l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1767437713]
 shape = SubResource("CircleShape2D_38vgs")
 
-[node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=1066501697]
+[node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=1066501697 groups=["navigation_polygon_source_geometry_group"]]
 show_behind_parent = true
 position = Vector2(0, 8)
 texture = ExtResource("2_38vgs")

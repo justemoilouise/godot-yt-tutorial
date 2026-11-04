@@ -7,6 +7,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		var is_paused = get_tree().paused
 		
-		unpause.play() if is_paused else pause.play()
+		if is_paused:
+			unpause.play()
+		else:
+			pause.play()
 		
 		get_tree().paused = not is_paused

@@ -134,8 +134,6 @@ animation = &"fly_animation"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_erta8"]
-advance_mode = 2
-advance_expression = "not can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ww8v4"]
 advance_mode = 2
@@ -148,7 +146,7 @@ advance_expression = "velocity == Vector2(0, 0)"
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e7gs6"]
 states/Start/position = Vector2(221, 100.75)
 states/chase/node = SubResource("AnimationNodeAnimation_e7gs6")
-states/chase/position = Vector2(462.5, 242)
+states/chase/position = Vector2(462.125, 242)
 states/hit/node = SubResource("AnimationNodeAnimation_grp10")
 states/hit/position = Vector2(682, 100.375)
 states/idle/node = SubResource("AnimationNodeAnimation_5gx0a")
@@ -186,6 +184,7 @@ texture = ExtResource("2_5gx0a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=296491146]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_e7gs6")
+debug_color = Color(0.47845018, 0.54248, 0.62500125, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1526806825]
 libraries/ = SubResource("AnimationLibrary_grp10")
@@ -220,3 +219,10 @@ shape = SubResource("CircleShape2D_ww8v4")
 
 [node name="Center" type="Marker2D" parent="." unique_id=1410301588]
 position = Vector2(0, -7)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1127705283]
+position = Vector2(0, -4)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Marker2D" unique_id=727787876]
+path_desired_distance = 8.0
+target_desired_distance = 8.0
