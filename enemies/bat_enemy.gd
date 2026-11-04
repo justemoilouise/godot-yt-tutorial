@@ -35,9 +35,13 @@ func _physics_process(delta: float) -> void:
 			pass
 		"chase":
 			var player = get_player()
-			navigation_agent_2d.target_position = player.global_position
-			var next_point = navigation_agent_2d.get_next_path_position()
-			velocity = global_position.direction_to(next_point - marker_2d.position) * SPEED if player is Player else Vector2.ZERO
+			if player is Player:
+				navigation_agent_2d.target_position = player.global_position
+				var next_point = navigation_agent_2d.get_next_path_position()
+				velocity = global_position.direction_to(next_point - marker_2d.position) * SPEED
+			else:
+				velocity = Vector2.ZERO
+				
 			bat.scale.x = sign(velocity.x)
 			move_and_slide()
 		"hit":
